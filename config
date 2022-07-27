@@ -2,6 +2,9 @@
 
 # certificate settings
 export CERT_DIR=certs
+export CA_NAME="k8s-ca"
+export CA_FILE="$CERT_DIR/$CA_NAME.crt"
+export CA_KEY="$CERT_DIR/$CA_NAME.key"
 
 export SA_NAME="sa"
 export SA_PUB="$CERT_DIR/$SA_NAME.pub"
