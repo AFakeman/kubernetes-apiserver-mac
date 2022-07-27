@@ -1,0 +1,14 @@
+# config
+
+# certificate settings
+export CERT_DIR=certs
+
+export SA_NAME="sa"
+export SA_PUB="$CERT_DIR/$SA_NAME.pub"
+export SA_KEY="$CERT_DIR/$SA_NAME.key"
+
+# binary file locations
+export BIN=bin
+export ETCD="$BIN/etcd"
+export ETCDCTL="$BIN/etcdctl"
+export KUBE_APISERVER="$BIN/kube-apiserver"

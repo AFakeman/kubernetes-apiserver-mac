@@ -1,7 +1,7 @@
 #!/bin/env bash
 # gen-certs.sh
 
-CERT_DIR=certs
+. config
 
 function gen_keypair() {
     local name=$1
@@ -15,4 +15,4 @@ function gen_keypair() {
 
 mkdir -p "$CERT_DIR"
 
-gen_keypair sa
+gen_keypair "$SA_NAME"
