@@ -15,3 +15,4 @@ export BIN=bin
 export ETCD="$BIN/etcd"
 export ETCDCTL="$BIN/etcdctl"
 export KUBE_APISERVER="$BIN/kube-apiserver"
+export KUBE_CONTROLLER_MANAGER="$BIN/kube-controller-manager"

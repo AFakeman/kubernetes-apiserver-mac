@@ -79,10 +79,42 @@ function gen_keypair() {
     test -f "$pub_file" || openssl rsa -in "$key_file" -pubout -out "$pub_file"
 }
 
+function gen_kubeconfig() {
+    local name=$1
+
+    cat << EOF > "$name.kubeconfig"
+apiVersion: v1
+kind: Config
+
+clusters:
+  - cluster:
+      certificate-authority: $CA_FILE
+      server: https://localhost:6443
+    name: default
+
+users:
+  - name: admin
+    user:
+      client-certificate: $CERT_DIR/$name.crt
+      client-key: $CERT_DIR/$name.key
+
+contexts:
+  - context:
+      cluster: default
+      namespace: default
+      user: admin
+    name: default
+
+current-context: default
+EOF
+}
+
 mkdir -p "$CERT_DIR"
 
 gen_ca "$CA_NAME" "/CN=kubernetes"
 gen_crt kube-apiserver "/O=system:masters/CN=kube-apiserver" "$CA_NAME" localhost
+gen_crt kube-controller-manager "/O=system:masters/CN=kube-controller-manager" "$CA_NAME" localhost
+gen_kubeconfig kube-controller-manager
 gen_crt admin "/O=system:masters/CN=kubernetes-admin" "$CA_NAME"
 gen_crt whodis "/CN=some-user" "$CA_NAME"
 gen_keypair "$SA_NAME"

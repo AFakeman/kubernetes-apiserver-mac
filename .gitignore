@@ -1,3 +1,4 @@
 bin
 etcd-data
 certs
+*.kubeconfig
