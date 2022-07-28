@@ -117,4 +117,5 @@ gen_crt kube-controller-manager "/O=system:masters/CN=kube-controller-manager" "
 gen_kubeconfig kube-controller-manager
 gen_crt admin "/O=system:masters/CN=kubernetes-admin" "$CA_NAME"
 gen_crt whodis "/CN=some-user" "$CA_NAME"
+gen_crt etcd "/CN=etcd" "$CA_NAME" localhost
 gen_keypair "$SA_NAME"
